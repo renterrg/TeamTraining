@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/renterrg/TeamTraining/issues"
   },
-  "homepage": "https://github.com/renterrg/TeamTraining#readme"
+  "homepage": "https://github.com/renterrg/TeamTraining#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mysql": "^2.14.1",
+    "sequelize": "^4.7.5"
+  }
 }
