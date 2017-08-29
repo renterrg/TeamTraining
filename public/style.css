@@ -1,0 +1,46 @@
+#navbarNav {
+	padding-left: 42em;
+}
+
+img {
+	height: 600px;
+}
+
+.carousel-text {
+	width: 50%;
+}
+
+#second-box {
+	margin-bottom: 28%;
+	margin-left: -10%;
+}
+
+#third-box {
+	margin-left: 25%;
+}
+
+#myNav {
+	padding-top: 30px;
+}
+
+.mid-container {
+	padding-top: 30px;
+	padding-bottom: 60px;
+	padding-right: 20px;
+	padding-left: 20px;
+}
+footer {
+	border-top-style: solid;
+	padding-top: 70px;
+	padding-right: 40px;
+	padding-left: 20px;
+	height: 120px;
+	margin-top: 20px;
+}
+
+.rounded-circle {
+	height: 290px;
+	margin-left: 40px;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
