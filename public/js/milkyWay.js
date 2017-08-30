@@ -8,34 +8,38 @@ $(document).ready(function() {
     getPostData(userId);
   }
 
-  var nameInput = $("#userName");
-  var emailInput = $("#userEmail");
-  var passwordInput = $("#userPassword");
+  var nameInput = $("#name-input");
+  var usernameInput = $("#username-input");
+  var emailInput = $("#email-input");
+  var passwordInput = $("#password-input");
+  var registerForm = $("#register-form");
   
-  $(signupForm).on("submit", function newuserData(event) {
+  $(registerForm).on("submit", function newuserData(event) {
     event.preventDefault();
-    if (!nameInput.val().trim() || !emailInput.val().trim() || !passwordInput.val().trim()) {
+
+    if (!nameInput.val().trim() || !usernameInput.val().trim() || !emailInput.val().trim() || !passwordInput.val().trim()) {
       return;
     }
-   
+
     var newUser = {
       name: nameInput.val().trim(),
+      username: usernameInput.val().trim(),
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
 
     console.log(newUser);
 
-    newuserCreation(newUser);
+    newUserCreation(newUser);
 
   });
   
   function newUserCreation(Post) {
-    $.post("/api/users/", Post, function() {
-      window.location.href = "/users";
+    $.post("/api/users", Post, function() {
+      console.log("User added to Database");
     });
-  }
-
+  };
+  /*
   function getUserData(id) {
     $.get("/api/users/" + id, function(data) {
       if (data) {
@@ -47,4 +51,5 @@ $(document).ready(function() {
       }
     });
   }  
+  */
 });
