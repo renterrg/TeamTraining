@@ -34,8 +34,9 @@ $(document).ready(function() {
 
   });
   
-  function newUserCreation(Post) {
-    $.post("/api/users", Post, function() {
+  function newUserCreation(User) {
+    $.post("/api/registered_users", User, function() {
+      window.location.href = "/teamLeader";
       console.log("User added to Database");
     });
   };
