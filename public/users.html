@@ -12,126 +12,57 @@
 
 <div class="jumbotron">
   <h1 class="display-3">Progress</h1>
-  <p class="lead">Update your progress and check your personal and team's weekly completion.</p>
+  <p class="lead">Update your progress and check up on your team's current status.</p>
   <hr class="my-4">
-  <p>Check each day that you have completed your training program.</p>
-  	<div class="card-group">
-
-	  <div class="card">
-	    <h3>Monday</h3>
-	    <ul class="list-group list-group-flush">
-		    <li class="list-group-item">Cardio</li>
-		    <li class="list-group-item">20 - 30 min</li>
-		</ul>
-	    <div class="card-footer">
-	      	<div class="form-check">
-			  <label class="form-check-label">
-			    <input class="form-check-input" type="checkbox" value="">
-			    Complete!
-			  </label>
-			</div>
-	    </div>
-	  </div>
-
-	  <div class="card">
-	    <h3>Tuesday</h3>
-	    <ul class="list-group list-group-flush">
-		    <li class="list-group-item">Cardio</li>
-		    <li class="list-group-item">20 - 30 min</li>
-		</ul>
-	    <div class="card-footer">
-	      	<div class="form-check">
-			  <label class="form-check-label">
-			    <input class="form-check-input" type="checkbox" value="">
-			    Complete!
-			  </label>
-			</div>
-	    </div>
-	  </div>
-
-	  <div class="card">
-	    <h3>Wednesday</h3>
-	    <ul class="list-group list-group-flush">
-		    <li class="list-group-item">Cardio</li>
-		    <li class="list-group-item">20 - 30 min</li>
-		</ul>
-	    <div class="card-footer">
-	      	<div class="form-check">
-			  <label class="form-check-label">
-			    <input class="form-check-input" type="checkbox" value="">
-			    Complete!
-			  </label>
-			</div>
-	    </div>
-	  </div>
-
-	  <div class="card">
-	    <h3>Thursday</h3>
-	    <ul class="list-group list-group-flush">
-		    <li class="list-group-item">Cardio</li>
-		    <li class="list-group-item">20 - 30 min</li>
-		</ul>
-	    <div class="card-footer">
-	      	<div class="form-check">
-			  <label class="form-check-label">
-			    <input class="form-check-input" type="checkbox" value="">
-			    Complete!
-			  </label>
-			</div>
-	    </div>
-	  </div>
-
-	  <div class="card">
-	    <h3>Friday</h3>
-	    <ul class="list-group list-group-flush">
-		    <li class="list-group-item">Cardio</li>
-		    <li class="list-group-item">20 - 30 min</li>
-		</ul>
-	    <div class="card-footer">
-	      	<div class="form-check">
-			  <label class="form-check-label">
-			    <input class="form-check-input" type="checkbox" value="">
-			    Complete!
-			  </label>
-			</div>
-	    </div>
-	  </div>
-
-	  <div class="card">
-	    <h3>Saturday</h3>
-	    <ul class="list-group list-group-flush">
-		    <li class="list-group-item">Cardio</li>
-		    <li class="list-group-item">20 - 30 min</li>
-		</ul>
-	    <div class="card-footer">
-	      	<div class="form-check">
-			  <label class="form-check-label">
-			    <input class="form-check-input" type="checkbox" value="">
-			    Complete!
-			  </label>
-			</div>
-	    </div>
-	  </div>
-
-	  <div class="card">
-	    <h3>Sunday</h3>
-	    <ul class="list-group list-group-flush">
-		    <li class="list-group-item">Cardio</li>
-		    <li class="list-group-item">20 - 30 min</li>
-		</ul>
-	    <div class="card-footer">
-	      	<div class="form-check">
-			  <label class="form-check-label">
-			    <input class="form-check-input" type="checkbox" value="">
-			    Complete!
-			  </label>
-			</div>
-	    </div>
-	  </div>	
-
-
-	</div>
+  <button class="btn btn-primary" data-toggle="modal" data-target=".update-modal-sm">Update</button>
+  <button class="btn btn-primary" data-toggle="modal" data-target=".progress-modal-lg">Team Progress</button>
 </div>
+
+<div class="modal fade update-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="card" style="width: 20rem;">
+		  <div class="card-body">
+		    <h4 class="card-title">Training One</h4>
+		    <h6 class="card-subtitle mb-2 text-muted">Cardio 20 - 30 min</h6>
+		    <h6 class="card-subtitle mb-2 text-muted">3x/week</h6>
+		    <p class="card-text">Have you completed your workout today?</p>
+		    <button type="submit" class="btn btn-primary">Yes</button>
+            <button type="submit" class="btn btn-primary">No</button>
+		  </div>
+		</div>        
+      </div>
+    </div>
+</div>
+
+<div class="modal fade progress-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="card" style="width: 50rem;">
+		  <ul class="list-group list-group-flush">
+		    <li class="list-group-item">User 1</li>
+		    <div class="progress">
+			  <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+			</div>
+		    <li class="list-group-item">User 2</li>
+		    <div class="progress">
+			  <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+			</div>
+		    <li class="list-group-item">User 3</li>
+		    <div class="progress">
+			  <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+			</div>
+		    <li class="list-group-item">User 4</li>
+		    <div class="progress">
+			  <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+			</div>
+		  </ul>
+		</div>        
+      </div>
+    </div>
+</div>
+
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
