@@ -68,10 +68,6 @@
                   <input class="form-control form-control-lg" type="text" id="name-input" placeholder="Enter name">
               </div>
               <div class="form-group">
-                <label for="exampleFormControlTextarea1">Create Username</label>
-                  <input class="form-control form-control-lg" type="text" id="username-input" placeholder="Enter a username">
-              </div>
-              <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
                 <input type="email" class="form-control form-control-lg" id="email-input" aria-describedby="emailHelp" placeholder="Enter email">
               </div>
@@ -79,7 +75,22 @@
                 <label for="exampleInputPassword1">Password</label>
                 <input type="password" class="form-control form-control-lg" id="password-input" placeholder="Password">
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Select your team
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Team A</a>
+                  <a class="dropdown-item" href="#">Team B</a>
+                  <a class="dropdown-item" href="#">Team C</a>
+                </div>
+              </div>
+
+              <br>
+
+
+              <button type="submit" class="btn btn-primary">Register</button>
+              <button type="submit" class="btn btn-primary">Register & Create Team</button>
             </form>
           </div>
         </div>

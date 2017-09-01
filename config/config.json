@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "",
-    "database": "TeamTraining_database",
+    "database": "teamtraining_database",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
