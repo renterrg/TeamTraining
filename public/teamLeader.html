@@ -10,13 +10,13 @@
 <body>
 
 <div class="jumbotron">
-		  <h1 class="display-3">Create your team and choose your training program.</h1>
-		  <p class="lead">Add each user by email in order to view your team's trainning progress and pick a training program.</p>
+		  <h1 class="display-3">Build your team and choose your training program.</h1>
+		  <p class="lead">Create your personal account, team name, and select one of the training programs.</p>
 		  <hr class="my-4">
-		  <p>If you have already received an invitation to join a team, go ahead and skip!</p>
+		  <p>If you don't wish to create a team, go ahead and skip!</p>
 		  <p>
 		  <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">
-		    Build team
+		    Registration
 		  </a>
 		  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Program Options</button>
 		  <button id="leader-form" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -25,33 +25,32 @@
 		  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 		    Skip
 		  </button>
-		</p>
+		  </p>
 
 	<div class="row">
 	  <div class="col">
 			<div class="collapse multi-collapse" id="multiCollapseExample1">
 			  <div class="card card-body">
-			    <form id="leader-form">
+				<form id="register-form">
+	              <div class="form-group">
+	                <label for="exampleFormControlTextarea1">Full Name</label>
+	                  <input class="form-control form-control-lg" type="text" id="name-input" placeholder="Enter name">
+	              </div>
+	              <div class="form-group">
+	                <label for="exampleInputEmail1">Email address</label>
+	                <input type="email" class="form-control form-control-lg" id="email-input" aria-describedby="emailHelp" placeholder="Enter email">
+	              </div>
+	              <div class="form-group">
+	                <label for="exampleInputPassword1">Password</label>
+	                <input type="password" class="form-control form-control-lg" id="password-input" placeholder="Password">
+	              </div>
+	            </form>
+
+			    <form>
 				  <div class="form-group">
-				    <label for="teamMate-1">Teammate 1</label>
-				    <input type="email" class="form-control" id="teamMate-1" aria-describedby="emailHelp" placeholder="Enter email">
-				  </div>
-				  <div class="form-group">
-				    <label for="teamMate-2">Teammate 2</label>
-				    <input type="email" class="form-control" id="teamMate-2" aria-describedby="emailHelp" placeholder="Enter email">
-				  </div>
-				  <div class="form-group">
-				    <label for="teamMate-3">Teammate 3</label>
-				    <input type="email" class="form-control" id="teamMate-3" aria-describedby="emailHelp" placeholder="Enter email">
-				  </div>
-				  <div class="form-group">
-				    <label for="teamMate-4">Teammate 4</label>
-				    <input type="email" class="form-control" id="teamMate-4" aria-describedby="emailHelp" placeholder="Enter email">
-				  </div>
-				  <div class="form-group">
-				    <label for="teamMate-5">Teammate 5</label>
-				    <input type="email" class="form-control" id="teamMate-5" aria-describedby="emailHelp" placeholder="Enter email">
-				  </div>
+	                <label for="exampleFormControlTextarea1">Team Name</label>
+	                  <input class="form-control form-control-lg" type="text" id="name-input" placeholder="Enter name">
+	              </div>
 				</form>
 			  </div>
 			</div>
