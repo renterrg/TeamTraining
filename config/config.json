@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "raga73=MS_17",
-    "database": "TeamTraining_database",
+    "password": "",
+    "database": "teamtraining_database",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
