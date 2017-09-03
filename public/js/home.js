@@ -2,16 +2,40 @@ $(document).ready(function() {
 
   var nameInput = $("#name-input");
   var emailInput = $("#email-input");
+  var emailLogin = $("#email-login");
   var passwordInput = $("#password-input");
-  var memberRegistration = $("#teamMember-registration");
+  var passwordLogin = $("#password-login");
   var url = window.location.search;  
   var teamsPrograms = [];
+  var loginData = [];
+
+  $("#login-menu").on("click", function() {
+    getUserData();
+  }); 
+
+  $("#teamMates-login").on("click", function() {
+    event.preventDefault();
+    var emailLog = emailLogin.val().trim();
+    var passwordLog = passwordLogin.val().trim();
+    var emailData = loginData.find(function(i) {
+      return i.email === emailLog;
+    });
+
+    if (!emailLog || !passwordLog) {
+      return;
+    }    
+ 
+    if (passwordLog === emailData.password) {
+      window.location.href = "/users";
+    }
+
+  });  
 
   $("#registration-menu").on("click", function() {
     getTeamData();
   });  
   
-  $(memberRegistration).on("click", function newUser(event) {
+  $("#teamMember-registration").on("click", function newUser(event) {
     event.preventDefault();
 
     if (!nameInput.val().trim() || !emailInput.val().trim() || !passwordInput.val().trim()) {
@@ -30,8 +54,6 @@ $(document).ready(function() {
       program: programData.program
     };
 
-    console.log(newUser);
-
     teamMateRegistration(newUser);
 
   });
@@ -40,6 +62,17 @@ $(document).ready(function() {
     $.post("/api/users", User, function() {
       window.location.href = "/users";
       console.log("Teammate has been added to Database");
+    });
+  };
+
+  function getUserData() {
+    $.get("/api/users", function(data) {
+      for (var i = 0; i < data.length; i++) {
+        loginData[i] = {
+          email: data[i].email,
+          password: data[i].password
+        };    
+      };
     });
   };
   
@@ -52,8 +85,7 @@ $(document).ready(function() {
           team: data[i].team,
           program: data[i].program
         };    
-      };
-      console.log(teamsPrograms);
+      };     
       teamsListgenerator(teamsArray);
     });
   };
