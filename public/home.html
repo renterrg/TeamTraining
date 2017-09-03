@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>TeamTraining</title>
+	<title>Home-TeamTraining</title>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 	<link href="style.css" rel="stylesheet">
@@ -42,7 +42,7 @@
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">Log In</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Register</a>
+            <a class="nav-link" id="registration-menu" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Register</a>
           </li>
         </ul>
         <div class="tab-content" id="myTabContent">
@@ -75,15 +75,14 @@
                 <input type="password" class="form-control form-control-lg" id="password-input" placeholder="Password">
               </div>
                               
-              <select data-placeholder="Select your team" class="chosen-select" id="team-selection">
+              <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="team-selection">
                 <option value="">Select your team</option>
-                <option id="teams-list"></option>
               </select>
               
               <br><br>
 
               <button id="teamMember-registration" type="submit" class="btn btn-primary">Register</button>
-              <button id="teamName-registration" type="submit" class="btn btn-primary">Register & Create Team</button>
+              <a href="/teamLeader"><button type="button" class="btn btn-primary">Register & Create Team</button></a>
               
             </form>
           </div>
