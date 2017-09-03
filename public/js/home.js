@@ -11,7 +11,7 @@ $(document).ready(function() {
     getTeamData();
   });  
   
-  $(memberRegistration).on("submit", function newUser(event) {
+  $(memberRegistration).on("click", function newUser(event) {
     event.preventDefault();
 
     if (!nameInput.val().trim() || !emailInput.val().trim() || !passwordInput.val().trim()) {
