@@ -19,7 +19,7 @@ $(document).ready(function() {
     }
 
     var programData = teamsPrograms.find(function(i) {
-        return i.team === $("#team-selection").text();
+        return i.team === $("#team-selection").val();
       });
 
     var newUser = {
@@ -27,7 +27,7 @@ $(document).ready(function() {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim(),
       team: $("#team-selection").val().trim(),
-      program: programData.program.val().trim()
+      program: programData.program
     };
 
     console.log(newUser);
@@ -68,7 +68,7 @@ $(document).ready(function() {
 
     for (var i = 0; i < teamsList.length; i++) {
       var count = i + 1;
-      $("#team-selection").append("<option value='" + count + "'>" + teamsList[i] + "</option>");      
+      $("#team-selection").append("<option value='" + teamsList[i] + "'>" + teamsList[i] + "</option>");      
     }
   };
 
