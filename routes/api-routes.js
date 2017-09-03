@@ -18,18 +18,19 @@ module.exports = function(app) {
     });
   });
   
-  app.post("/api/registered_users", function(req, res) {    
+  app.post("/api/users", function(req, res) {    
     console.log(req.body);
     db.User.create({
-      name: req.body.name,
-      username: req.body.username,
+      name: req.body.name,      
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      team: req.body.team,
+      program: req.body.program
     }).then(function(dbUser) {
       res.json(dbUser);
     });
   });  
-
+/*
   app.post("/api/registered_teams", function(req, res) {    
     console.log(req.body);
     db.Team.create({
@@ -50,5 +51,5 @@ module.exports = function(app) {
       res.json(dbTeam);
     });
   }); 
-
+*/
 };

@@ -1,54 +1,75 @@
 $(document).ready(function() {
- 
-  var url = window.location.search;
-  var userId;  
-
-  if (url.indexOf("?post_id=") !== -1) {
-    userId = url.split("=")[1];
-    getPostData(userId);
-  }
 
   var nameInput = $("#name-input");
   var emailInput = $("#email-input");
   var passwordInput = $("#password-input");
-  var MemberRegistration = $("#teamMember-registration");
+  var memberRegistration = $("#teamMember-registration");
+  var url = window.location.search;  
+  var teamsPrograms = [];
+
+  $("#registration-menu").on("click", function() {
+    getTeamData();
+  });  
   
-  $(MemberRegistration).on("submit", function newuserData(event) {
+  $(memberRegistration).on("submit", function newUser(event) {
     event.preventDefault();
 
     if (!nameInput.val().trim() || !emailInput.val().trim() || !passwordInput.val().trim()) {
       return;
     }
 
+    var programData = teamsPrograms.find(function(i) {
+        return i.team === $("#team-selection").text();
+      });
+
     var newUser = {
       name: nameInput.val().trim(),
       email: emailInput.val().trim(),
-      password: passwordInput.val().trim()
+      password: passwordInput.val().trim(),
+      team: $("#team-selection").val().trim(),
+      program: programData.program.val().trim()
     };
 
     console.log(newUser);
 
-    newUserCreation(newUser);
+    teamMateRegistration(newUser);
 
   });
-  
-  function newUserCreation(User) {
+
+  function teamMateRegistration(User) {
     $.post("/api/users", User, function() {
       window.location.href = "/users";
-      console.log("User added to Database");
+      console.log("Teammate has been added to Database");
     });
   };
-  /*
-  function getUserData(id) {
-    $.get("/api/users/" + id, function(data) {
-      if (data) {
-       
-        nameInput.val(data.name);
-        emailInput.val(data.email);
-        passwordInput.val(data.password);
-       
-      }
+  
+  function getTeamData() {
+    $.get("/api/users", function(data) {
+      var teamsArray = [];
+      for (var i = 0; i < data.length; i++) {
+        teamsArray[i] = data[i].team; 
+        teamsPrograms[i] = {
+          team: data[i].team,
+          program: data[i].program
+        };    
+      };
+      console.log(teamsPrograms);
+      teamsListgenerator(teamsArray);
     });
-  }  
-  */
+  };
+
+  function teamsListgenerator(teamsArr) {    
+    var teamsList = teamsArr.reduce(function(allTeams, team) {
+      if (allTeams.indexOf(team) < 0) {
+        allTeams.push(team);        
+      }     
+      return allTeams;       
+    }, []);   
+
+    for (var i = 0; i < teamsList.length; i++) {
+      var count = i + 1;
+      $("#team-selection").append("<option value='" + count + "'>" + teamsList[i] + "</option>");      
+    }
+  };
+
 });
