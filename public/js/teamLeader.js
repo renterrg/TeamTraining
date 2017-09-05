@@ -4,13 +4,11 @@ $(document).ready(function() {
   var emailInput = $("#email-input");
   var passwordInput = $("#password-input");
   var teamnameInput = $("#teamname-input");  
-  var teamProgram = $(".list-group .active");
   var url = window.location.search;
+  var teamProgram;
   
-  $(".list-group .list-group-item").click(function(e) {    
-    $(".list-group .list-group-item").removeClass("active");
-    $(e.target).addClass("active");
-    teamProgram = $(this);
+  $("#list-tab a").click(function(e) {    
+    teamProgram = $(e.target);   
   });
 
   $("#teamdata-form").on("click", function newteamData(event) {
