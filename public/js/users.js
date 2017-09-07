@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
 	var userData = [];
+	var trainingType;
 
 	$("#update_btn").on("click", function() {
 		getData();
@@ -36,35 +37,47 @@ $(document).ready(function() {
 		$.get("/api/users", function(data) {
 			for (var i = 0; i < data.length; i++) {
 				userData[i] = {
-		         	program: data[i].program
-		        	};
-		        var trainingType = userData[i].program;
+		         	program: data[i].program,
+		         	progress: data[i].progress
+		        	}
 			}
-			return trainingType;
+			return userData;
 		});
 
-		switch(trainingType){
+		switch(userData.program){
 
     		case "Training One":
-    			updateProgramOne();
+    			updateProgramOne(userData.program, userData.progress);
     			break;
 
     		case "Training Two":
-    			updateProgramTwo();
+    			updateProgramTwo(userData.program, userData.progress);
     			break;
 
     		case "Training Three":
-    			updateProgramThree();
+    			updateProgramThree(userData.program, userData.progress);
     			break;
-    	} 
-	}
+    	}; 
+	};
 
 
-	function updateProgramTwo() {
+	function updateProgramTwo(a,b) {
 
-		$.put("/api/users", function(data){
+		var newProgress = 0.20;
 
-		})
-	}
-});
+		$.ajax({
+	      method: "PUT",
+	      url: "/api/users",
+	      data: newProgress
+	    }).then(function(){
+	    	for (var i = 0; i < data.length; i++) {
+				userData[i] = {
+		         	progress: data[i].progress
+		        	};
+		        
+			}
+			console.log(newProgress);
+			return newProgress;
+	    });
+};
 
