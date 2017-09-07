@@ -25,10 +25,22 @@ module.exports = function(app) {
       email: req.body.email,
       password: req.body.password,
       team: req.body.team,
-      program: req.body.program
+      program: req.body.program,
+      progress: req.body.progress
     }).then(function(dbUser) {
       res.json(dbUser);
     });
   });  
 
+  app.put("/api/users", function(req, res) {
+    db.Post.update(
+      req.body,
+      {
+        where: {
+          id: req.body.id
+        }
+      }).then(function(dbUser) {
+        res.json(dbUser);
+      });
+  });
 };

@@ -8,6 +8,7 @@ $(document).ready(function() {
   var url = window.location.search;  
   var teamsPrograms = [];
   var loginData = [];
+  
 
   $("#login-menu").on("click", function() {
     getUserData();
@@ -51,7 +52,8 @@ $(document).ready(function() {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim(),
       team: $("#team-selection").val().trim(),
-      program: programData.program
+      program: programData.program,
+      progress: 0
     };
 
     teamMateRegistration(newUser);
