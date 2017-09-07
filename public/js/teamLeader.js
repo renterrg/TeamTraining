@@ -7,6 +7,8 @@ $(document).ready(function() {
   var url = window.location.search;
   var teamProgram;
   
+  
+  
   $("#list-tab a").click(function(e) {    
     teamProgram = $(e.target);   
   });
@@ -24,7 +26,8 @@ $(document).ready(function() {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim(),
       team: teamnameInput.val().trim(),
-      program: teamProgram.text()
+      program: teamProgram.text(),
+      progress: 0
     };
 
     teamCreation(newTeam);

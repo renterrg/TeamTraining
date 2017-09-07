@@ -14,7 +14,7 @@
   <h1 class="display-3">Progress</h1>
   <p class="lead">Update your progress and check up on your team's current status.</p>
   <hr class="my-4">
-  <button class="btn btn-primary" data-toggle="modal" data-target=".update-modal-sm">Update</button>
+  <button class="btn btn-primary" data-toggle="modal" data-target=".update-modal-sm" id="update_btn">Update</button>
   <button class="btn btn-primary" data-toggle="modal" data-target=".progress-modal-lg">Team Progress</button>
 </div>
 
@@ -23,12 +23,12 @@
       <div class="modal-content">
         <div class="card" style="width: 20rem;">
 		  <div class="card-body">
-		    <h4 class="card-title">Training One</h4>
-		    <h6 class="card-subtitle mb-2 text-muted">Cardio 20 - 30 min</h6>
-		    <h6 class="card-subtitle mb-2 text-muted">3x/week</h6>
+		    <h4 class="card-title" id="exercise"></h4>
+		    <h6 class="card-subtitle mb-2 text-muted" id="repetitions"></h6>
+		    <h6 class="card-subtitle mb-2 text-muted" id="routine"></h6>
 		    <p class="card-text">Have you completed your workout today?</p>
-		    <button type="submit" class="btn btn-primary">Yes</button>
-            <button type="submit" class="btn btn-primary">No</button>
+		    <button type="submit" class="btn btn-primary" id="yes_btn">Yes</button>
+            <button type="submit" class="btn btn-primary" id="no_btn">No</button>
 		  </div>
 		</div>        
       </div>
@@ -67,6 +67,8 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="js/users.js" type="text/javascript"></script>
 
 </body>
 </html>

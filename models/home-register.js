@@ -26,6 +26,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       len: [1]
+    },
+    progress: {
+      type: DataTypes.DECIMAL(3,2),
+      allowNull: true,
+      validate: {
+        min: 0,
+        max: 1
+      }
     }
   });
   return User;
