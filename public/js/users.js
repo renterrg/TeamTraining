@@ -24,6 +24,10 @@ $(document).ready(function() {
 		updateProgress();
 	});
 
+	$("#team_btn").on("click", function(){			
+		showTeamsprogress();
+	});
+
 	function getUserdata(user) {
 
 	    userId = user || "";
@@ -120,6 +124,33 @@ $(document).ready(function() {
 			});
 			produceInfo(progressFinder.progress);		
 		});		
+	};
+
+	function showTeamsprogress() {	
+		
+		$("ul.list-group").empty();
+
+		for (var i = 0; i < usersData.length; i++) {
+			var teamSpreadProgress = parseFloat(usersData[i].progress) * 100;
+			var createDisplayList = $("<li>");
+			createDisplayList.addClass("list-group-item");
+			createDisplayList.append(usersData[i].name);
+			var createDisplayProgress = $("<div>");
+			createDisplayProgress.addClass("progress");
+			var createDisplayContent = $("<div>");
+			createDisplayContent.addClass("progress-bar");
+			createDisplayProgress.append(createDisplayContent);
+			createDisplayContent.attr("role", "progressbar");
+			createDisplayContent.attr("aria-valuenow", "80");
+			createDisplayContent.attr("aria-valuemin", "0");
+			createDisplayContent.attr("aria-valuemmax", "100");
+			createDisplayContent.text(teamSpreadProgress + "%");
+			createDisplayContent.css("width", teamSpreadProgress + "%");
+			$("ul.list-group").append(createDisplayList);
+			$("ul.list-group").append(createDisplayProgress);
+
+		}			
+	
 	};
 
 });
