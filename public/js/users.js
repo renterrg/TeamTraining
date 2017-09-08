@@ -1,83 +1,125 @@
 $(document).ready(function() {
 
-	var userData = [];
+	var exerciseData = $("#exercise");
+	var repetitionsData = $("#repetitions");
+	var url = window.location.search;  
+	var routineData = $("#routine");
+	var usersData = [];
 	var trainingType;
-
+	var userProgress;
+	var userId;
+	
 	$("#update_btn").on("click", function() {
-		getData();
+
+		if (url.indexOf("?name_id=") !== -1) {
+	        userId = url.split("=")[1];
+	        getUserdata(userId);	       
+		} else {
+		    getUserdata();		  
+		} 
+
 	});
 
-	function getData() {
-		$.get("/api/users", function(data) {
-      		for (var i = 0; i < data.length; i++) {
-
-	        	userData[i] = {
-		          	name: data[i].name,
-		         	team: data[i].team,
-		         	program: data[i].program,
-		         	progress: data[i].progress
-		        	};
-
-		        $("#exercise").text(
-		        	"Name: " + userData[i].name + "\n" +
-		        	" Team: " + userData[i].team + "\n" +
-		        	"Program: " + userData[i].program + "\n" +
-		        	"Progress: " + userData[i].progress);  
-      		};
-    	});
-	};
-
-
-	$("#yes_btn").on("click", function(){
+	$("#yes_btn").on("click", function(){		
 		updateProgress();
 	});
 
+	function getUserdata(user) {
+
+	    userId = user || "";
+	    if (userId) {
+			userId = "/" + userId;			
+	    }
+	    $.get("/api/users" + userId, function(data) {
+			userProgress = data;
+			if (!userProgress) {					
+				displayEmpty(user);
+			} else {
+				produceInfo(userProgress.progress);				
+			}
+	    });
+	};	
+
+	function produceInfo(progress) {	
+
+		var numProgress = parseFloat(progress) * 100;
+		exerciseData.text("Name: " + userProgress.name + "\nTeam: " + userProgress.team + 
+			"\nProgram: " + userProgress.program + "\nProgress: " + numProgress + "%"); 		
+	};	
+
 	function updateProgress() {
 		
-		$.get("/api/users", function(data) {
-			for (var i = 0; i < data.length; i++) {
-				userData[i] = {
-		         	program: data[i].program,
-		         	progress: data[i].progress
-		        	}
-			}
-			return userData;
-		});
+		switch(userProgress.program){
 
-		switch(userData.program){
-
-    		case "Training One":
-    			updateProgramOne(userData.program, userData.progress);
+    		case "Training One":    			
+    			updateProgramOne(userProgress.progress);
     			break;
-
-    		case "Training Two":
-    			updateProgramTwo(userData.program, userData.progress);
+    		case "Training Two":    			
+    			updateProgramTwo(userProgress.progress);
     			break;
-
-    		case "Training Three":
-    			updateProgramThree(userData.program, userData.progress);
+    		case "Training Three":    			
+    			updateProgramThree(userProgress.progress);
     			break;
     	}; 
 	};
 
-
-	function updateProgramTwo(a,b) {
-
-		var newProgress = 0.20;
+	function updateProgramOne(user) {
+		
+		var newProgress = (0.33 + parseFloat(user)).toFixed(2);
 
 		$.ajax({
-	      method: "PUT",
-	      url: "/api/users",
-	      data: newProgress
-	    }).then(function(){
-	    	for (var i = 0; i < data.length; i++) {
-				userData[i] = {
-		         	progress: data[i].progress
-		        	};
-		        
-			}
-			console.log(newProgress);
-			return newProgress;
-	    });
-};
+			method: "PUT",
+			url: "/api/users",			
+			data: {
+				id: userProgress.id,
+				progress: newProgress
+	  		}
+	    }).done(getEveryone);
+	};
 
+	function updateProgramTwo(user) {
+		
+		var newProgress = (0.20 + parseFloat(user)).toFixed(2);
+		
+		$.ajax({
+			method: "PUT",
+			url: "/api/users",			
+			data: {
+				id: userProgress.id,
+				progress: newProgress
+			}
+	    }).done(getEveryone);
+	};
+
+	function updateProgramThree(user) {	
+		
+		var newProgress = (0.20 + parseFloat(user)).toFixed(2);
+
+		$.ajax({
+			method: "PUT",
+			url: "/api/users",
+			data: {
+				id: userProgress.id,
+				progress: newProgress
+	  		}
+	    }).done(getEveryone);
+	};
+
+	function getEveryone() {		
+
+		$.get("/api/users", function(data) {
+			for (var i = 0; i < data.length; i++) {
+				usersData[i] = {
+					id: data[i].id,
+		          	name: data[i].name,		         	
+		         	progress: data[i].progress
+		        };
+			}			
+			var progressFinder = usersData.find(function(i) {
+				return i.id === userProgress.id;
+			});
+			produceInfo(progressFinder.progress);		
+		});		
+	};
+
+});
