@@ -8,33 +8,12 @@ $(document).ready(function() {
   var url = window.location.search;  
   var teamsPrograms = [];
   var loginData = [];
-  
+  var validatedPassword;
+  var validatedEmail;
 
-  $("#login-menu").on("click", function() {
-    getUserData();
-  }); 
-
-  $("#teamMates-login").on("click", function() {
-    event.preventDefault();
-    var emailLog = emailLogin.val().trim();
-    var passwordLog = passwordLogin.val().trim();
-    var emailData = loginData.find(function(i) {
-      return i.email === emailLog;
-    });
-
-    if (!emailLog || !passwordLog) {
-      return;
-    }    
- 
-    if (passwordLog === emailData.password) {
-      window.location.href = "/users";
-    }
-
-  });  
-
-  $("#registration-menu").on("click", function() {
-    getTeamData();
-  });  
+  $(document).on("click", "#login-menu", getUserData); 
+  $(document).on("click", "#teamMates-login", loginEntry); 
+  $(document).on("click", "#registration-menu", getTeamData);  
   
   $("#teamMember-registration").on("click", function newUser(event) {
     event.preventDefault();
@@ -72,7 +51,8 @@ $(document).ready(function() {
       for (var i = 0; i < data.length; i++) {
         loginData[i] = {
           email: data[i].email,
-          password: data[i].password
+          password: data[i].password,
+          id: data[i].id
         };    
       };
     });
@@ -104,6 +84,23 @@ $(document).ready(function() {
       var count = i + 1;
       $("#team-selection").append("<option value='" + teamsList[i] + "'>" + teamsList[i] + "</option>");      
     }
+  };
+
+  function loginEntry() {
+    event.preventDefault();
+    var emailLog = emailLogin.val().trim();
+    var passwordLog = passwordLogin.val().trim();
+    var emailData = loginData.find(function(i) {
+      return i.email === emailLog;
+    });
+
+    if (!emailLog || !passwordLog) {
+      return;
+    }    
+ 
+    if (passwordLog === emailData.password) {
+      window.location.href = "/users?name_id=" + emailData.id;      
+    } 
   };
 
 });

@@ -1,90 +1,156 @@
 $(document).ready(function() {
 
-	var userData = [];
+	var exerciseData = $("#exercise");
+	var repetitionsData = $("#repetitions");
+	var url = window.location.search;  
+	var routineData = $("#routine");
+	var usersData = [];
 	var trainingType;
-
+	var userProgress;
+	var userId;
+	
 	$("#update_btn").on("click", function() {
-		getData();
+
+		if (url.indexOf("?name_id=") !== -1) {
+	        userId = url.split("=")[1];
+	        getUserdata(userId);	       
+		} else {
+		    getUserdata();		  
+		} 
+
 	});
 
-	function getData() {
-		$.get("/api/users", function(data) {
-      		for (var i = 0; i < data.length; i++) {
+	$("#yes_btn").on("click", function(){		
+		updateProgress();
+	});
 
-	        	userData[i] = {
-		          	name: data[i].name,
-		         	team: data[i].team,
-		         	program: data[i].program,
-		         	progress: data[i].progress
-		        	};
+	$("#team_btn").on("click", function(){			
+		showTeamsprogress();
+	});
 
-		        $("#exercise").text(
-		        	"Name: " + userData[i].name + "\n" +
-		        	" Team: " + userData[i].team + "\n" +
-		        	"Program: " + userData[i].program + "\n" +
-		        	"Progress: " + userData[i].progress);  
-      		};
+	function getUserdata(user) {
 
-      		$.ajax({
-		      method: "PUT",
-		      url: "/api/users",
-		      data: ""
-		    }).then(function(){
-		    	userData[i].progress + 0.2;
-		    });
-    	});
+	    userId = user || "";
+	    if (userId) {
+			userId = "/" + userId;			
+	    }
+	    $.get("/api/users" + userId, function(data) {
+			userProgress = data;
+			if (!userProgress) {					
+				displayEmpty(user);
+			} else {
+				produceInfo(userProgress.progress);				
+			}
+	    });
+	};	
+
+	function produceInfo(progress) {	
+
+		var numProgress = parseFloat(progress) * 100;
+		exerciseData.text("Name: " + userProgress.name + "\nTeam: " + userProgress.team + 
+			"\nProgram: " + userProgress.program + "\nProgress: " + numProgress + "%"); 		
+	};	
+
+	function updateProgress() {
+		
+		switch(userProgress.program){
+
+    		case "Training One":    			
+    			updateProgramOne(userProgress.progress);
+    			break;
+    		case "Training Two":    			
+    			updateProgramTwo(userProgress.progress);
+    			break;
+    		case "Training Three":    			
+    			updateProgramThree(userProgress.progress);
+    			break;
+    	}; 
 	};
 
-
-// 	$("#yes_btn").on("click", function(){
-// 		updateProgress();
-// 	});
-
-// 	function updateProgress() {
+	function updateProgramOne(user) {
 		
-// 		$.get("/api/users", function(data) {
-// 			for (var i = 0; i < data.length; i++) {
-// 				userData[i] = {
-// 		         	program: data[i].program,
-// 		         	progress: data[i].progress
-// 		        	};
-// 			};
-// 			return userData;
-// 		});
+		var newProgress = (0.33 + parseFloat(user)).toFixed(2);
 
-// 		switch(userData.program){
+		$.ajax({
+			method: "PUT",
+			url: "/api/users",			
+			data: {
+				id: userProgress.id,
+				progress: newProgress
+	  		}
+	    }).done(getEveryone);
+	};
 
-//     		case "Training One":
-//     			updateProgramOne(userData.program, userData.progress);
-//     			break;
+	function updateProgramTwo(user) {
+		
+		var newProgress = (0.20 + parseFloat(user)).toFixed(2);
+		
+		$.ajax({
+			method: "PUT",
+			url: "/api/users",			
+			data: {
+				id: userProgress.id,
+				progress: newProgress
+			}
+	    }).done(getEveryone);
+	};
 
-//     		case "Training Two":
-//     			updateProgramTwo(userData.program, userData.progress);
-//     			break;
+	function updateProgramThree(user) {	
+		
+		var newProgress = (0.20 + parseFloat(user)).toFixed(2);
 
-//     		case "Training Three":
-//     			updateProgramThree(userData.program, userData.progress);
-//     			break;
-//     	}; 
-// 	};
+		$.ajax({
+			method: "PUT",
+			url: "/api/users",
+			data: {
+				id: userProgress.id,
+				progress: newProgress
+	  		}
+	    }).done(getEveryone);
+	};
 
+	function getEveryone() {		
 
-// 	function updateProgramTwo(user) {
+		$.get("/api/users", function(data) {
+			for (var i = 0; i < data.length; i++) {
+				usersData[i] = {
+					id: data[i].id,
+		          	name: data[i].name,		         	
+		         	progress: data[i].progress
+		        };
+			}			
+			var progressFinder = usersData.find(function(i) {
+				return i.id === userProgress.id;
+			});
+			produceInfo(progressFinder.progress);		
+		});		
+	};
 
+	function showTeamsprogress() {	
+		
+		$("ul.list-group").empty();
+
+		for (var i = 0; i < usersData.length; i++) {
+			var teamSpreadProgress = parseFloat(usersData[i].progress) * 100;
+			var createDisplayList = $("<li>");
+			createDisplayList.addClass("list-group-item");
+			createDisplayList.append(usersData[i].name);
+			var createDisplayProgress = $("<div>");
+			createDisplayProgress.addClass("progress");
+			var createDisplayContent = $("<div>");
+			createDisplayContent.addClass("progress-bar");
+			createDisplayProgress.append(createDisplayContent);
+			createDisplayContent.attr("role", "progressbar");
+			createDisplayContent.attr("aria-valuenow", "80");
+			createDisplayContent.attr("aria-valuemin", "0");
+			createDisplayContent.attr("aria-valuemmax", "100");
+			createDisplayContent.text(teamSpreadProgress + "%");
+			createDisplayContent.css("width", teamSpreadProgress + "%");
+			$("ul.list-group").append(createDisplayList);
+			$("ul.list-group").append(createDisplayProgress);
+
+		}			
 	
+	};
 
-// 		$.ajax({
-// 	      method: "PUT",
-// 	      url: "/api/users",
-// 	      data: user
-// 	    }).then(function(){
-// 	    	for (var i = 0; i < data.length; i++) {
-// 				userData[i] = {
-// 		         	progress: data[i].progress
-// 		        	};
-// 			var newProgress = userData.progress + 0.2;
-// 			};
-// 			return newProgress;
-// 	    });
-// 	};
 });

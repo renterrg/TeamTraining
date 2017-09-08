@@ -13,8 +13,9 @@ module.exports = function(app) {
       where: {
         id: req.params.id
       }
-    }).then(function(dbUser) {
-      res.json(dbUser);
+    }).then(function(dbLogin) {
+      console.log(dbLogin);
+      res.json(dbLogin);
     });
   });
   
@@ -33,14 +34,14 @@ module.exports = function(app) {
   });  
 
   app.put("/api/users", function(req, res) {
-    db.Post.update(
-      req.body,
-      {
+    db.User.update({
+      progress: req.body.progress,
+      }, {
         where: {
           id: req.body.id
         }
-      }).then(function(dbUser) {
-        res.json(dbUser);
-      });
+    }).then(function(dbUser) {
+      res.json(dbUser);
+    });
   });
 };
