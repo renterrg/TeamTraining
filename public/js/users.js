@@ -24,60 +24,67 @@ $(document).ready(function() {
 		        	"Program: " + userData[i].program + "\n" +
 		        	"Progress: " + userData[i].progress);  
       		};
+
+      		$.ajax({
+		      method: "PUT",
+		      url: "/api/users",
+		      data: ""
+		    }).then(function(){
+		    	userData[i].progress + 0.2;
+		    });
     	});
 	};
 
 
-	$("#yes_btn").on("click", function(){
-		updateProgress();
-	});
+// 	$("#yes_btn").on("click", function(){
+// 		updateProgress();
+// 	});
 
-	function updateProgress() {
+// 	function updateProgress() {
 		
-		$.get("/api/users", function(data) {
-			for (var i = 0; i < data.length; i++) {
-				userData[i] = {
-		         	program: data[i].program,
-		         	progress: data[i].progress
-		        	}
-			}
-			return userData;
-		});
+// 		$.get("/api/users", function(data) {
+// 			for (var i = 0; i < data.length; i++) {
+// 				userData[i] = {
+// 		         	program: data[i].program,
+// 		         	progress: data[i].progress
+// 		        	};
+// 			};
+// 			return userData;
+// 		});
 
-		switch(userData.program){
+// 		switch(userData.program){
 
-    		case "Training One":
-    			updateProgramOne(userData.program, userData.progress);
-    			break;
+//     		case "Training One":
+//     			updateProgramOne(userData.program, userData.progress);
+//     			break;
 
-    		case "Training Two":
-    			updateProgramTwo(userData.program, userData.progress);
-    			break;
+//     		case "Training Two":
+//     			updateProgramTwo(userData.program, userData.progress);
+//     			break;
 
-    		case "Training Three":
-    			updateProgramThree(userData.program, userData.progress);
-    			break;
-    	}; 
-	};
+//     		case "Training Three":
+//     			updateProgramThree(userData.program, userData.progress);
+//     			break;
+//     	}; 
+// 	};
 
 
-	function updateProgramTwo(a,b) {
+// 	function updateProgramTwo(user) {
 
-		var newProgress = 0.20;
+	
 
-		$.ajax({
-	      method: "PUT",
-	      url: "/api/users",
-	      data: newProgress
-	    }).then(function(){
-	    	for (var i = 0; i < data.length; i++) {
-				userData[i] = {
-		         	progress: data[i].progress
-		        	};
-		        
-			}
-			console.log(newProgress);
-			return newProgress;
-	    });
-};
-
+// 		$.ajax({
+// 	      method: "PUT",
+// 	      url: "/api/users",
+// 	      data: user
+// 	    }).then(function(){
+// 	    	for (var i = 0; i < data.length; i++) {
+// 				userData[i] = {
+// 		         	progress: data[i].progress
+// 		        	};
+// 			var newProgress = userData.progress + 0.2;
+// 			};
+// 			return newProgress;
+// 	    });
+// 	};
+});

@@ -10,12 +10,12 @@
 </head>
 <body>
 
-<div class="jumbotron">
-  <h1 class="display-3">Progress</h1>
-  <p class="lead">Update your progress and check up on your team's current status.</p>
+<div class="jumbotron" id="users_jumbotron">
+  <h1 class="display-1 bg-dark-text">Progress</h1>
+  <p class="lead bg-dark-text">Update your progress and check up on your team's current status.</p>
   <hr class="my-4">
-  <button class="btn btn-primary" data-toggle="modal" data-target=".update-modal-sm" id="update_btn">Update</button>
-  <button class="btn btn-primary" data-toggle="modal" data-target=".progress-modal-lg">Team Progress</button>
+  <button class="btn btn-default btn-lg" data-toggle="modal" data-target=".update-modal-sm" id="update_btn">Update</button>
+  <button class="btn btn-default btn-lg" data-toggle="modal" data-target=".progress-modal-lg">Team Progress</button>
 </div>
 
 <div class="modal fade update-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -27,8 +27,8 @@
 		    <h6 class="card-subtitle mb-2 text-muted" id="repetitions"></h6>
 		    <h6 class="card-subtitle mb-2 text-muted" id="routine"></h6>
 		    <p class="card-text">Have you completed your workout today?</p>
-		    <button type="submit" class="btn btn-primary" id="yes_btn">Yes</button>
-            <button type="submit" class="btn btn-primary" id="no_btn">No</button>
+		    <button type="submit" class="btn btn-default" id="yes_btn">Yes</button>
+            <button type="submit" class="btn btn-default" id="no_btn">No</button>
 		  </div>
 		</div>        
       </div>
