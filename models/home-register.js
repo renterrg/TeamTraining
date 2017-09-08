@@ -33,7 +33,8 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         min: 0,
         max: 1
-      }
+      },
+      defaultValue: 0
     }
   });
   return User;
