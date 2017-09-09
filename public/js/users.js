@@ -5,8 +5,9 @@ $(document).ready(function() {
 	var exerciseData = $("#exercise");
 	var repetitionsData = $("#repetitions");
 	var url = window.location.search;  
-	var routineData = $("#routine");
+	var routineData = $("#routine");	
 	var usersData = [];
+	var usersTeamarray;
 	var trainingType;
 	var userProgress;
 	var userId;
@@ -121,14 +122,21 @@ $(document).ready(function() {
 			for (var i = 0; i < data.length; i++) {
 				usersData[i] = {
 					id: data[i].id,
-		          	name: data[i].name,		         	
+		          	name: data[i].name,	
+		          	team: data[i].team,		         	
 		         	progress: data[i].progress
 		        };
 			}			
 			var progressFinder = usersData.find(function(i) {
 				return i.id === userProgress.id;
 			});
-			produceInfo(progressFinder.progress);		
+
+			usersTeamarray = usersData.filter(function(j) {
+				return j.team === userProgress.team;
+			});
+			
+			produceInfo(progressFinder.progress);	
+
 		});		
 	};
 
@@ -136,11 +144,11 @@ $(document).ready(function() {
 		
 		$("ul.list-group").empty();
 
-		for (var i = 0; i < usersData.length; i++) {
-			var teamSpreadProgress = parseFloat(usersData[i].progress) * 100;
+		for (var i = 0; i < usersTeamarray.length; i++) {
+			var teamSpreadProgress = parseFloat(usersTeamarray[i].progress) * 100;
 			var createDisplayList = $("<li>");
 			createDisplayList.addClass("list-group-item");
-			createDisplayList.append(usersData[i].name);
+			createDisplayList.append(usersTeamarray[i].name);
 			var createDisplayProgress = $("<div>");
 			createDisplayProgress.addClass("progress");
 			var createDisplayContent = $("<div>");
