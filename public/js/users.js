@@ -1,3 +1,5 @@
+
+
 $(document).ready(function() {
 
 	var exerciseData = $("#exercise");
@@ -8,8 +10,11 @@ $(document).ready(function() {
 	var trainingType;
 	var userProgress;
 	var userId;
+	$("#team_btn").hide();
 	
 	$("#update_btn").on("click", function() {
+
+		
 
 		if (url.indexOf("?name_id=") !== -1) {
 	        userId = url.split("=")[1];
@@ -22,6 +27,7 @@ $(document).ready(function() {
 
 	$("#yes_btn").on("click", function(){		
 		updateProgress();
+		$("#team_btn").show();
 	});
 
 	$("#team_btn").on("click", function(){			
@@ -47,8 +53,8 @@ $(document).ready(function() {
 	function produceInfo(progress) {	
 
 		var numProgress = parseFloat(progress) * 100;
-		exerciseData.text("Name: " + userProgress.name + "\nTeam: " + userProgress.team + 
-			"\nProgram: " + userProgress.program + "\nProgress: " + numProgress + "%"); 		
+		exerciseData.text("\n Name: " + userProgress.name + "\n Team: " + userProgress.team + 
+							"\n Program: " + userProgress.program + "\n Progress: " + numProgress + "%"); 		
 	};	
 
 	function updateProgress() {
