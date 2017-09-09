@@ -20,9 +20,11 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
+    "moment": "^2.18.1",
     "mysql": "^2.14.1",
     "mysql2": "^1.4.2",
     "path": "^0.12.7",
+    "require": "^2.4.20",
     "sequelize": "^4.7.5"
   }
 }

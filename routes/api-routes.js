@@ -1,4 +1,5 @@
 var db = require("../models");
+var moment = require("moment");
 
 module.exports = function(app) {
   
@@ -44,4 +45,19 @@ module.exports = function(app) {
       res.json(dbUser);
     });
   });
+
+  if(moment().startOf('week') == moment()) {
+      db.User.findAll({}).then(function(dbUser) {
+        for (var i = 0; i < dbUser.length; i++) {
+          dbUser[i].update({
+        progress: 0.00
+      }, {
+        where: {
+          id: dbUser[i].id
+        }
+      }).then()
+        }
+      });
+  }
+
 };
