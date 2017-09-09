@@ -29,6 +29,10 @@ $(document).ready(function() {
 		updateProgress();		
 	});
 
+	$("#no_btn").on("click", function(){
+		$("#team_btn").show();				
+	});
+
 	$("#team_btn").on("click", function(){	
 		getEveryone();		
 	});
