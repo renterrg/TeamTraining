@@ -162,11 +162,11 @@ $(document).ready(function() {
 			});
 			
 			produceInfo(progressFinder.progress);	
-			showTeamsprogress();
+			loadTeamsprogress();
 		});		
 	};
 
-	function showTeamsprogress() {
+	function loadTeamsprogress() {
 		
 		$("ul.list-group").empty();
 
