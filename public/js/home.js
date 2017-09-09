@@ -41,7 +41,7 @@ $(document).ready(function() {
 
   function teamMateRegistration(User) {
     $.post("/api/users", User, function() {
-      window.location.href = "/users";
+      window.location.href = "/home";
       console.log("Teammate has been added to Database");
     });
   };
