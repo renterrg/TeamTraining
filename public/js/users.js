@@ -31,7 +31,6 @@ $(document).ready(function() {
 
 	$("#team_btn").on("click", function(){	
 		getEveryone();		
-		showTeamsprogress();
 	});
 
 	function getUserdata(user) {
@@ -163,7 +162,7 @@ $(document).ready(function() {
 			});
 			
 			produceInfo(progressFinder.progress);	
-
+			showTeamsprogress();
 		});		
 	};
 
