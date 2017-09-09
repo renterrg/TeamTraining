@@ -29,7 +29,8 @@ $(document).ready(function() {
 		updateProgress();		
 	});
 
-	$("#team_btn").on("click", function(){			
+	$("#team_btn").on("click", function(){	
+		getEveryone();		
 		showTeamsprogress();
 	});
 
@@ -52,7 +53,8 @@ $(document).ready(function() {
 	function produceInfo(progress) {	
 
 		var numProgress = parseFloat(progress) * 100;
-		if (numProgress > 95) {
+
+		if (numProgress === 100) {
 			challengeComplete.modal("toggle");
 			exerciseData.text("\n Name: " + userProgress.name + "\n Team: " + userProgress.team + 
 			"\n Program: " + userProgress.program + "\n Progress: 100%"); 		
@@ -81,43 +83,64 @@ $(document).ready(function() {
 	function updateProgramOne(user) {
 		
 		var newProgress = (0.33 + parseFloat(user)).toFixed(2);
+			
+		if (parseFloat(newProgress) > 0.95) {			
+			produceInfo("1.00");
+			$.ajax({
+				method: "PUT",
+				url: "/api/users",			
+				data: {
+					id: userProgress.id,
+					progress: 1.00
+		  		}
+		    }).done(getEveryone);
 
-		$.ajax({
-			method: "PUT",
-			url: "/api/users",			
-			data: {
-				id: userProgress.id,
-				progress: newProgress
-	  		}
-	    }).done(getEveryone);
+		} else {
+			$.ajax({
+				method: "PUT",
+				url: "/api/users",			
+				data: {
+					id: userProgress.id,
+					progress: newProgress
+		  		}
+		    }).done(getEveryone);
+		}
 	};
 
 	function updateProgramTwo(user) {
 		
 		var newProgress = (0.20 + parseFloat(user)).toFixed(2);
-		
-		$.ajax({
-			method: "PUT",
-			url: "/api/users",			
-			data: {
-				id: userProgress.id,
-				progress: newProgress
-			}
-	    }).done(getEveryone);
+
+		if (newProgress === "1.20") {			
+			produceInfo("1.00");
+		} else {
+			$.ajax({
+				method: "PUT",
+				url: "/api/users",			
+				data: {
+					id: userProgress.id,
+					progress: newProgress
+		  		}
+		    }).done(getEveryone);
+		}
 	};
 
 	function updateProgramThree(user) {	
 		
 		var newProgress = (0.20 + parseFloat(user)).toFixed(2);
 
-		$.ajax({
-			method: "PUT",
-			url: "/api/users",
-			data: {
-				id: userProgress.id,
-				progress: newProgress
-	  		}
-	    }).done(getEveryone);
+		if (newProgress === "1.20") {			
+			produceInfo("1.00");
+		} else {
+			$.ajax({
+				method: "PUT",
+				url: "/api/users",			
+				data: {
+					id: userProgress.id,
+					progress: newProgress
+		  		}
+		    }).done(getEveryone);
+		}
 	};
 
 	function getEveryone() {		
@@ -144,7 +167,7 @@ $(document).ready(function() {
 		});		
 	};
 
-	function showTeamsprogress() {	
+	function showTeamsprogress() {
 		
 		$("ul.list-group").empty();
 
