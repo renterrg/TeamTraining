@@ -21,13 +21,9 @@ $(document).ready(function() {
 
 	});
 
-	$("#yes_btn").on("click", function(){		
-		updateProgress();
-	});
-
-	$("#team_btn").on("click", function(){			
-		showTeamsprogress();
-	});
+	$(document).on("click", "#yes_btn", updateProgress);
+/*	$(document).on("click", "#no_btn", stilltodecide);*/
+	$(document).on("click", "#team_btn", showTeamsprogress);
 
 	function getUserdata(user) {
 
@@ -128,7 +124,7 @@ $(document).ready(function() {
 			usersTeamarray = usersData.filter(function(j) {
 				return j.team === userProgress.team;
 			});
-			console.log(usersTeamarray);
+			
 			produceInfo(progressFinder.progress);	
 
 		});		
