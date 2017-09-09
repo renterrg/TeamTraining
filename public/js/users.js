@@ -1,9 +1,8 @@
-
-
 $(document).ready(function() {
 
 	var exerciseData = $("#exercise");
 	var repetitionsData = $("#repetitions");
+	var challengeComplete = $("#complete");
 	var url = window.location.search;  
 	var routineData = $("#routine");	
 	var usersData = [];
@@ -11,11 +10,10 @@ $(document).ready(function() {
 	var trainingType;
 	var userProgress;
 	var userId;
+
 	$("#team_btn").hide();
 	
-	$("#update_btn").on("click", function() {
-
-		
+	$("#update_btn").on("click", function() {		
 
 		if (url.indexOf("?name_id=") !== -1) {
 	        userId = url.split("=")[1];
@@ -26,9 +24,9 @@ $(document).ready(function() {
 
 	});
 
-	$("#yes_btn").on("click", function(){		
-		updateProgress();
-		$("#team_btn").show();
+	$("#yes_btn").on("click", function(){
+		$("#team_btn").show();		
+		updateProgress();		
 	});
 
 	$("#team_btn").on("click", function(){			
@@ -54,8 +52,14 @@ $(document).ready(function() {
 	function produceInfo(progress) {	
 
 		var numProgress = parseFloat(progress) * 100;
-		exerciseData.text("\n Name: " + userProgress.name + "\n Team: " + userProgress.team + 
-							"\n Program: " + userProgress.program + "\n Progress: " + numProgress + "%"); 		
+		if (numProgress > 95) {
+			challengeComplete.modal("toggle");
+			exerciseData.text("\n Name: " + userProgress.name + "\n Team: " + userProgress.team + 
+			"\n Program: " + userProgress.program + "\n Progress: 100%"); 		
+		} else {
+			exerciseData.text("\n Name: " + userProgress.name + "\n Team: " + userProgress.team + 
+			"\n Program: " + userProgress.program + "\n Progress: " + numProgress + "%"); 		
+		}
 	};	
 
 	function updateProgress() {
