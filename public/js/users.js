@@ -11,6 +11,7 @@ $(document).ready(function() {
 	var userProgress;
 	var userId;
 
+
 	$("#team_btn").hide();
 	
 	$("#update_btn").on("click", function() {		
@@ -30,7 +31,7 @@ $(document).ready(function() {
 	});
 
 	$("#no_btn").on("click", function(){
-		$("#team_btn").show();				
+		$("#team_btn").show();	
 	});
 
 	$("#team_btn").on("click", function(){	
