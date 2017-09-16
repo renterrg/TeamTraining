@@ -36,7 +36,7 @@ $(document).ready(function() {
   
   function teamCreation(User) {
     $.post("/api/users", User, function() {
-      window.location.href = "/home";
+      window.location.href = "/users";
       console.log("Team created and Team leader has been added to Database");
     });
   };

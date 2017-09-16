@@ -47,17 +47,17 @@ module.exports = function(app) {
   });
 
   if(moment().startOf('week') == moment()) {
-      db.User.findAll({}).then(function(dbUser) {
-        for (var i = 0; i < dbUser.length; i++) {
-          dbUser[i].update({
-        progress: 0.00
-      }, {
-        where: {
-          id: dbUser[i].id
-        }
-      }).then()
-        }
-      });
+    db.User.findAll({}).then(function(dbUser) {
+      for (var i = 0; i < dbUser.length; i++) {
+        dbUser[i].update({
+          progress: 0.00
+          }, {
+          where: {
+            id: dbUser[i].id
+          }
+        }).then()
+      }
+    });
   }
 
 };
