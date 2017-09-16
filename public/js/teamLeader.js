@@ -5,9 +5,7 @@ $(document).ready(function() {
   var passwordInput = $("#password-input");
   var teamnameInput = $("#teamname-input");  
   var url = window.location.search;
-  var teamProgram;
-  
-  
+  var teamProgram;  
   
   $("#list-tab a").click(function(e) {    
     teamProgram = $(e.target);   
@@ -36,7 +34,7 @@ $(document).ready(function() {
   
   function teamCreation(User) {
     $.post("/api/users", User, function() {
-      window.location.href = "/users";
+      window.location.href = "/home";
       console.log("Team created and Team leader has been added to Database");
     });
   };
