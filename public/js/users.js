@@ -1,5 +1,25 @@
 $(document).ready(function() {
-
+	
+	var teamPrograms = [
+		{
+			level: "Training One",
+			title: "Level One",
+			description: "This training program is designed to accomodate all types of athletes at a level where each person can train and complete their training succesfully.",
+			exercise: ["Cardio", "20-30 min", "3x/week"]
+		},
+		{
+			level: "Training Two",
+			title: "Level Two",
+			description: "This training program is designed to accomodate some types of athletes at a level where each person can train and complete their training succesfully.",
+			exercise: ["Cardio", "20-30 min", "5x/week"]
+		},
+		{
+			level: "Training Three",
+			title: "Level Three",
+			description: "This training program is designed to accomodate advanced athletes at a level where each person can train and complete their training succesfully.",
+			exercise: ["Cardio", "30-40 min", "5x/week"]
+		}
+	];
 	var exerciseData = $("#exercise");
 	var repetitionsData = $("#repetitions");
 	var challengeComplete = $("#complete");
@@ -11,18 +31,10 @@ $(document).ready(function() {
 	var userProgress;
 	var userId;
 
-
 	$("#team_btn").hide();
 	
 	$("#update_btn").on("click", function() {		
-
-		if (url.indexOf("?name_id=") !== -1) {
-	        userId = url.split("=")[1];
-	        getUserdata(userId);	       
-		} else {
-		    getUserdata();		  
-		} 
-
+		userIdentification();
 	});
 
 	$("#yes_btn").on("click", function(){
@@ -31,12 +43,22 @@ $(document).ready(function() {
 	});
 
 	$("#no_btn").on("click", function(){
-		$("#team_btn").show();	
+		$("#team_btn").show();				
 	});
 
 	$("#team_btn").on("click", function(){	
 		getEveryone();		
 	});
+
+	function userIdentification() {
+
+		if (url.indexOf("?name_id=") !== -1) {
+	        userId = url.split("=")[1];
+	        getUserdata(userId);	       
+		} else {
+		    getUserdata();		  
+		} 
+	};
 
 	function getUserdata(user) {
 
@@ -49,7 +71,10 @@ $(document).ready(function() {
 			if (!userProgress) {					
 				displayEmpty(user);
 			} else {
-				produceInfo(userProgress.progress);				
+				$("#user-assigned").text(userProgress.name);
+				loadUsertraining(userProgress.program);
+				produceInfo(userProgress.progress);		
+				console.log(userProgress.program);		
 			}
 	    });
 	};	
@@ -171,9 +196,32 @@ $(document).ready(function() {
 		});		
 	};
 
+	function loadUsertraining(program) {
+
+		var userProgram = teamPrograms.find(function(i) {
+			return i.level === program;
+		});
+		console.log(userProgram);
+		var userExercise = userProgram.exercise;
+		console.log(userExercise);
+		
+		$("#training-info ul.list-group").empty();
+		$("#training-info h4.card-title").text(userProgram.title);
+		$("#training-info p.card-text").text(userProgram.description);
+
+		for (var i = 0; i < userExercise.length; i++) {			
+			var createDisplayTraining = $("<li>");
+			createDisplayTraining.addClass("list-group-item");
+			createDisplayTraining.append(userExercise[i]);		
+			console.log(userExercise[i]);	
+			$("#training-info ul.list-group").append(createDisplayTraining);
+		}			
+	
+	};
+
 	function loadTeamsprogress() {
 		
-		$("ul.list-group").empty();
+		$("#team-progress ul.list-group").empty();
 
 		for (var i = 0; i < usersTeamarray.length; i++) {
 			var teamSpreadProgress = parseFloat(usersTeamarray[i].progress) * 100;
@@ -191,11 +239,13 @@ $(document).ready(function() {
 			createDisplayContent.attr("aria-valuemmax", "100");
 			createDisplayContent.text(teamSpreadProgress + "%");
 			createDisplayContent.css("width", teamSpreadProgress + "%");
-			$("ul.list-group").append(createDisplayList);
-			$("ul.list-group").append(createDisplayProgress);
+			$("#team-progress ul.list-group").append(createDisplayList);
+			$("#team-progress ul.list-group").append(createDisplayProgress);
 
 		}			
 	
 	};
+
+	userIdentification();
 
 });
